@@ -1,0 +1,21 @@
+class Solution {
+    public int[] corpFlightBookings(int[][] bookings, int n) {
+        int []res=new int[n];
+        //traverse through 2d bookings.length
+        for(int i=0;i<bookings.length;i++){
+            int start=bookings[i][0];
+            int end=bookings[i][1];
+            int seats=bookings[i][2];
+            res[end-1]+=seats;
+            if(start>1){
+                res[start-2]-=seats;
+            }
+        }
+        //traverse through array and find total no. of flights
+        for(int i=n-2;i>=0;i--){
+            res[i]+=res[i+1];
+        }
+        return res;
+        
+    }
+}
